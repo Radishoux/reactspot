@@ -1,0 +1,22 @@
+.Navbarholder
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.navbarbtn
+{
+	border: none;
+	color: orange;
+	background: none;
+	padding: 5px;
+	margin: 10px;
+	text-align: center;
+	font: 1em "roboto", sans-serif;
+	height: 100px;
+  	line-height: 100px;
+  	cursor: pointer;
+	outline: none;
+}
+
