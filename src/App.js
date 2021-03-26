@@ -1,15 +1,11 @@
+import Signedin from "./Signedin"
+import Signin from "./Signin"
 import React from "react";
-import './App.css';
 
-export default class App extends React.Component
+const code = new URLSearchParams(window.location.search).get("code")
+
+export default function App() 
 {
-  render() 
-  {
-    return (
-      <div className="Appholder">
-
-      </div>      
-      );
-  }
+      return code ? <Signedin code={code} /> : <Signin />
 }
 
