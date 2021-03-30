@@ -11,7 +11,7 @@ export default function Login() {
       style={{ minHeight: "100vh" }}
     >
       <a className="btn btn-success btn-lg" href={authurl}>
-        Login With Spotify
+        Signin with Spotify
       </a>
     </Container>
   )
