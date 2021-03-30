@@ -6,7 +6,7 @@ export default function useAuth(code) {
     const [accessToken, setAccessToken] = useState()
     const [refreshToken, setRefreshToken] = useState()
     const [expiresIn, setExpiresIn] = useState()
-    
+
     useEffect(() => {
         axios
           .post("http://localhost:3001/login", {
@@ -21,7 +21,7 @@ export default function useAuth(code) {
             
           })
           .catch(() => {
-            window.location = "/"
+            // window.location = "/"
           })
       }, [code])
     
