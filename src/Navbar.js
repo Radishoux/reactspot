@@ -3,6 +3,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import ReactDOM from 'react-dom';
 import SpotifyWebApi from "spotify-web-api-node"
 import {Form} from "react-bootstrap"
+import SearchedTrack from "./SearchedTrack"
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "06b399096b834aa4889d88263fe2d969",
@@ -96,21 +97,11 @@ function Search()
         console.log(params)
         spotifyApi.searchTracks(search)
         .then(function(res) {
-            res.body.tracks.items.map(tracks =>{
+            res.body.tracks.items.map(track =>{
                 var newDiv = document.createElement("div");
-                var newImg = document.createElement("img");
-                newImg.src = tracks.album.images[1].url;
-                newDiv.appendChild(newImg);
-                var txtDiv = document.createElement("div");
-                txtDiv.className = "searchholder"
-                txtDiv.innerHTML += "Title : " + tracks.name;
-                txtDiv.innerHTML += "</br>"
-                txtDiv.innerHTML += "Artist : " + tracks.artists[0].name;
-                txtDiv.innerHTML += "</br>"
-                txtDiv.innerHTML += "Album : " + tracks.album.name;
-                newDiv.appendChild(txtDiv);
+                newDiv.id = track.id;
                 document.getElementById("searchreceiver").appendChild(newDiv);
-                console.log(tracks);
+                ReactDOM.render(<SearchedTrack trk={track}/>,document.getElementById(track.id));
             })
           }, function(err) {
             console.error(err);
