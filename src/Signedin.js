@@ -14,7 +14,6 @@ export default function Signedin({ code }) {
             <div id="rootDiv">
             {/* {code} */}
                 <div id="HomeDiv" className="home"></div>
-                <div id="ListDiv" className="list"></div>
                 <div id="SearchDiv" className="search"></div>
                 <div id="UserDiv" className="user"></div>
             </div>
