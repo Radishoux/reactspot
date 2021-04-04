@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar"
 import useAuth from "./Auther"
+import Initer from "./Player"
 // import { createStore } from 'redux'
 // import { createSlice, configureStore } from '@reduxjs/toolkit'
 
@@ -9,8 +10,15 @@ export default function Signedin({ code }) {
   const accessToken = useAuth(code)
     return (
             <div id="SignedinDaddy">
-            <Navbar/>
-            <div>{code}</div>
+            <Navbar at={accessToken}/>
+            <div id="rootDiv">
+            {/* {code} */}
+                <div id="HomeDiv" className="home"></div>
+                <div id="ListDiv" className="list"></div>
+                <div id="SearchDiv" className="search"></div>
+                <div id="UserDiv" className="user"></div>
+            </div>
+            <Initer/>
             </div>
         );
     }
