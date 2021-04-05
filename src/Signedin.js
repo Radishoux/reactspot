@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar"
 import useAuth from "./Auther"
-import Initer from "./Player"
+import Initer from "./Initer"
+import Player from "./Player"
 // import { createStore } from 'redux'
 // import { createSlice, configureStore } from '@reduxjs/toolkit'
 
@@ -11,6 +12,7 @@ export default function Signedin({ code }) {
     return (
             <div id="SignedinDaddy">
             <Navbar at={accessToken}/>
+            <div id="PlayerHolder"></div>
             <div id="rootDiv">
             {/* {code} */}
                 <div id="HomeDiv" className="home"></div>

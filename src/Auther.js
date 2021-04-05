@@ -21,7 +21,7 @@ export default function useAuth(code) {
         
     })
     .catch(() => {
-        // window.location = "/"
+        window.location = "/"
     })
 }, [code])
 

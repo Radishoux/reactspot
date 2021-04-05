@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import SpotifyWebApi from "spotify-web-api-node"
 import {Form} from "react-bootstrap"
 import SearchedTrack from "./SearchedTrack"
+import Userprofile from "./userprofile"
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "06b399096b834aa4889d88263fe2d969",
@@ -82,7 +83,7 @@ function Home()
 {
     return (
         <div>
-        Home
+        <div id="homereceiver"></div>
         </div>
     )
 }
@@ -101,7 +102,7 @@ function Search()
                 var newDiv = document.createElement("div");
                 newDiv.id = track.id;
                 document.getElementById("searchreceiver").appendChild(newDiv);
-                ReactDOM.render(<SearchedTrack trk={track}/>,document.getElementById(track.id));
+                return ReactDOM.render(<SearchedTrack at={at} trk={track}/>,document.getElementById(track.id));
             })
           }, function(err) {
             console.error(err);
@@ -123,9 +124,18 @@ function Search()
 
 function User() 
 {
+    function loaduser(el) {
+        spotifyApi.getMe()
+        .then(function(data) {
+            return ReactDOM.render(<Userprofile usr={data.body}/>,document.getElementById("userreceiver"));
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });
+    }
+
     return (
         <div>
-        User
+        <div id="userreceiver" ref={el => loaduser(el)}></div>
         </div>
     )
 }

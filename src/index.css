@@ -2,6 +2,12 @@
 {
 	margin: 0;
 	padding: 0;
+    overflow-x: hidden;
+
+}
+
+._ActionsRSWP * {
+    display: none;
 }
 
 body
