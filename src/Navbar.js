@@ -5,10 +5,21 @@ import SpotifyWebApi from "spotify-web-api-node"
 import {Form} from "react-bootstrap"
 import SearchedTrack from "./SearchedTrack"
 import Userprofile from "./userprofile"
+import { createStore } from 'redux'
 
-const spotifyApi = new SpotifyWebApi({
-    clientId: "06b399096b834aa4889d88263fe2d969",
-  })
+function pageReducer(state = {value: "Home"}, action) {
+    switch (action.type) {
+        case 'changePage':
+            return { value: action.Payload }
+        default:
+            return state
+      }
+}
+
+let actualpage = createStore(pageReducer)
+actualpage.subscribe(() => console.log("now in", actualpage.getState()))
+
+const spotifyApi = new SpotifyWebApi({clientId: "06b399096b834aa4889d88263fe2d969"})
 
 var rendered = {
     Home : false,
@@ -50,12 +61,12 @@ class Navbarbtn extends React.Component
 
 function switchdiv(which) 
 {
-
     document.getElementById(atm+"Div").classList.remove("shown");
     if (!rendered[which]) loadDiv(which)
     setTimeout(function(){
         document.getElementById(atm+"Div").classList.add("shown");
     }, 10);
+    actualpage.dispatch({ type: 'changePage', Payload: which})
     atm = which;
     // console.log(atm);
 }
@@ -78,11 +89,16 @@ function loadDiv(which)
         rendered.User = true;
     }
 }
+class Home extends React.Component {
+    render() {
+        return (
+            <div>
+            <div id="homereceiver"></div>
+            </div>
+        )
+    }
 
-function Home() 
-{
-    function loadhome(el) {
-        
+    componentDidMount() {
         // spotifyApi.getMyTopArtists()
         // .then(function(data) {
         //   let topArtists = data.body.items;
@@ -105,11 +121,6 @@ function Home()
               });
     }
 
-    return (
-        <div>
-        <div id="homereceiver" ref={el => loadhome(el)}></div>
-        </div>
-    )
 }
 
 function Search() 
@@ -145,9 +156,17 @@ function Search()
     )
 }
 
-function User() 
-{
-    function loaduser(el) {
+
+class User extends React.Component {
+    render() {
+        return (
+            <div>
+            <div id="userreceiver"></div>
+            </div>
+        )
+    }
+
+    componentDidMount() {
         spotifyApi.getMe()
         .then(function(data) {
             return ReactDOM.render(<Userprofile usr={data.body}/>,document.getElementById("userreceiver"));
@@ -155,12 +174,6 @@ function User()
             console.log('Something went wrong!', err);
         });
     }
-
-    return (
-        <div>
-        <div id="userreceiver" ref={el => loaduser(el)}></div>
-        </div>
-    )
 }
 
 function Icon(props)

@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./Navbar"
 import useAuth from "./Auther"
 import Initer from "./Initer"
-import Player from "./Player"
 // import { createStore } from 'redux'
 // import { createSlice, configureStore } from '@reduxjs/toolkit'
 

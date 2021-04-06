@@ -4,10 +4,6 @@ import ReactDOM from 'react-dom';
 
 export default class SearchedTrack extends React.Component
 {
-    constructor(props) {
-        super(props);
-    }
-
     play = () => {
         return ReactDOM.render(<Player at={this.props.at} trk={this.props.trk.uri}/>,document.getElementById("PlayerHolder"));
     }

@@ -7,9 +7,6 @@ function flag(ct) {
 }
 
 export default class Userprofile extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     disc = () => {
         var cookies = document.cookie.split(";");
