@@ -6,6 +6,10 @@
 
 }
 
+html{
+    overflow: hidden;
+}
+
 ._ActionsRSWP * {
     display: none;
 }
