@@ -1,7 +1,5 @@
 import React from "react";
-import SpotifyWebApi from "spotify-web-api-node"
 import SpotifyPlayer from "react-spotify-web-playback";
-import { WhatshotOutlined } from "@material-ui/icons";
 export default class Player extends React.Component 
 {
     render() {

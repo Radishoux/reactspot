@@ -9,17 +9,13 @@ export default class SearchedTrack extends React.Component
     }
 
     play = () => {
-
-        console.log(this.props.at)
-        console.log(this.props.trk)
         return ReactDOM.render(<Player at={this.props.at} trk={this.props.trk.uri}/>,document.getElementById("PlayerHolder"));
-
     }
     
     render() {
 
         return (
-            <div onClick={this.play} style={{cursor: "pointer", "border-bottom": "1px solid"}}>
+            <div onClick={this.play} style={{cursor: "pointer", "borderBottom": "1px solid"}}>
             <img alt="https://lh3.googleusercontent.com/sUdPhFArCQeltCJWBr934XznvLgCIDs1uIvccjM1pJb5bz03hoPHU3islstJae6wSrjO2A7JWqed6C-YNw=w544-h544-l90-rj" src={this.props.trk.album.images[1].url}></img>
             <div style={{display: "inline-block", "paddingLeft": "1rem"}}>
                 <p>Title : {this.props.trk.name}</p>

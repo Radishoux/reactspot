@@ -25,7 +25,6 @@ export default class Userprofile extends Component {
     }
 
     render() {
-        console.log(this.props.usr)
         return (
             <div style={{width: "500px", margin: "50px auto"}}>
                 <img style={{borderRadius: "1000px"}} src={this.props.usr.images[0].url} alt="https://lh3.googleusercontent.com/sUdPhFArCQeltCJWBr934XznvLgCIDs1uIvccjM1pJb5bz03hoPHU3islstJae6wSrjO2A7JWqed6C-YNw=w544-h544-l90-rj"></img>

@@ -57,7 +57,7 @@ function switchdiv(which)
         document.getElementById(atm+"Div").classList.add("shown");
     }, 10);
     atm = which;
-    console.log(atm);
+    // console.log(atm);
 }
 
 function loadDiv(which) 
@@ -81,9 +81,33 @@ function loadDiv(which)
 
 function Home() 
 {
+    function loadhome(el) {
+        
+        // spotifyApi.getMyTopArtists()
+        // .then(function(data) {
+        //   let topArtists = data.body.items;
+        //   console.log(topArtists);
+        // });
+
+        spotifyApi.getRecommendations({
+            seed_tracks : ['1C5YO3ItmCjO2lUtLQmYYO'],
+          })
+            .then(function(res) {
+                // console.log(res);
+                res.body.tracks.map(track =>{
+                    var newDiv = document.createElement("div");
+                    newDiv.id = track.id;
+                    document.getElementById("homereceiver").appendChild(newDiv);
+                    return ReactDOM.render(<SearchedTrack at={at} trk={track}/>,document.getElementById(track.id));
+                })
+              }, function(err) {
+                console.error(err);
+              });
+    }
+
     return (
         <div>
-        <div id="homereceiver"></div>
+        <div id="homereceiver" ref={el => loadhome(el)}></div>
         </div>
     )
 }
@@ -95,7 +119,6 @@ function Search()
     function research(params) {
         document.getElementById("searchreceiver").innerHTML = "";
         search = params;
-        console.log(params)
         spotifyApi.searchTracks(search)
         .then(function(res) {
             res.body.tracks.items.map(track =>{
